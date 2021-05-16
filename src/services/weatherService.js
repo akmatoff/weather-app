@@ -13,12 +13,13 @@ export const getWeather = async (q) => {
             lon: '0',
             type: 'link, accurate',
             lat: '0',
-            units: 'metric'
+            units: 'imperial, metric'
         },
         headers: {
             'x-rapidapi-key': apiKey,
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
         }
     })
+    return data
 }
 
