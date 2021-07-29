@@ -1,25 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
-const URL = 'https://community-open-weather-map.p.rapidapi.com/find'
-const apiKey = '128688ccd8mshf3b41aac11e35cap1550fajsna9b4ce92e119'
+const URL = "https://api.openweathermap.org/data/2.5/weather/";
+const apiKey = "7698f8f7244b3045c934b3d443df8047";
 
 // Function to send request to the API
 export const getWeather = async (q) => {
-    const {data} = await axios.get(URL, {
-        params: {
-            q: q,
-            cnt: '0',
-            mode: 'null',
-            lon: '0',
-            type: 'link, accurate',
-            lat: '0',
-            units: 'imperial, metric'
-        },
-        headers: {
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com'
-        }
-    })
-    return data
-}
+  try {
+    const { data } = await axios.get(URL, {
+      params: {
+        q: q,
+        appid: apiKey,
+        cnt: "0",
+        mode: "null",
+        lon: "0",
+        type: "link, accurate",
+        lat: "0",
+        units: "metric",
+      },
+    });
 
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};

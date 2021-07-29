@@ -54,6 +54,10 @@ body {
   font-size: 20px;
 }
 
+.weather-container {
+  text-align: center;
+}
+
 .city-name {
   font-size: 35px;
   padding: 30px;
@@ -61,8 +65,12 @@ body {
 }
 
 .celcius-container {
-  padding: 5px 40px;
+  padding: 0 40px;
   justify-content: space-around;
+}
+
+.celcius {
+  margin: 0 10px;
 }
 
 .weather-description {
