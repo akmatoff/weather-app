@@ -18,7 +18,7 @@ export const getWeather = async (q) => {
         units: "metric",
       },
     });
-
+    console.log(data);
     return data;
   } catch (err) {
     console.error(err);

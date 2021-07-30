@@ -27,14 +27,24 @@ function App() {
             placeholder="Enter the city name..."
           ></input>
 
-          <div className="weather-container flex-column">
+          <div className="weather-container flex-column centered">
             <div className="city-name">{weatherData && weatherData.name}</div>
             <div className="celcius-container flex-row">
-              <div className="weather-icon">
-                {weatherData.weather && weatherData.weather[0].main}
+              <div className="weather-icon-container">
+                {weatherData.weather && (
+                  <img
+                    className="weather-icon"
+                    src={
+                      "https://openweathermap.org/img/wn/" +
+                      weatherData.weather[0].icon +
+                      ".png"
+                    }
+                    alt="Weather icon"
+                  />
+                )}
               </div>
               <div className="celcius">
-                {weatherData.main && weatherData.main.temp}
+                {weatherData.main && weatherData.main.temp + "℃"}
               </div>
             </div>
             <div className="weather-description">
