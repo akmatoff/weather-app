@@ -21,6 +21,6 @@ export const getWeather = async (q) => {
     console.log(data);
     return data;
   } catch (err) {
-    console.error(err);
+    return err;
   }
 };

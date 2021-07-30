@@ -1,16 +1,22 @@
 import "./App.css";
 import { getWeather } from "./services/weatherService";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 function App() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
+  const [error, setError] = useState();
 
   const search = async (e) => {
     if (e.key === "Enter") {
-      const data = await getWeather(city);
-      setWeatherData(data);
-      console.log(data);
+      try {
+        const data = await getWeather(city);
+        setWeatherData(data);
+        console.log(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      }
     }
   };
 
@@ -27,30 +33,40 @@ function App() {
             placeholder="Enter the city name..."
           ></input>
 
-          <div className="weather-container flex-column centered">
-            <div className="city-name">{weatherData && weatherData.name}</div>
-            <div className="celcius-container flex-row">
-              <div className="weather-icon-container">
-                {weatherData.weather && (
-                  <img
-                    className="weather-icon"
-                    src={
-                      "https://openweathermap.org/img/wn/" +
-                      weatherData.weather[0].icon +
-                      ".png"
-                    }
-                    alt="Weather icon"
-                  />
-                )}
-              </div>
-              <div className="celcius">
-                {weatherData.main && weatherData.main.temp + "℃"}
-              </div>
+          {weatherData && (
+            <div className="weather-container flex-column centered">
+              {error ? (
+                <div className="error">{error}</div>
+              ) : (
+                <Fragment>
+                  <div className="city-name">
+                    {weatherData && weatherData.name}
+                  </div>
+                  <div className="celcius-container flex-row">
+                    <div className="weather-icon-container">
+                      {weatherData.weather && (
+                        <img
+                          className="weather-icon"
+                          src={
+                            "https://openweathermap.org/img/wn/" +
+                            weatherData.weather[0].icon +
+                            ".png"
+                          }
+                          alt="Weather icon"
+                        />
+                      )}
+                    </div>
+                    <div className="celcius">
+                      {weatherData.main && weatherData.main.temp + "℃"}
+                    </div>
+                  </div>
+                  <div className="weather-description">
+                    {weatherData.weather && weatherData.weather[0].description}
+                  </div>
+                </Fragment>
+              )}
             </div>
-            <div className="weather-description">
-              {weatherData.weather && weatherData.weather[0].description}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
