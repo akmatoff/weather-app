@@ -48,7 +48,7 @@ body {
   background: var(--secondary-color-transparent);
   width: clamp(450px, 50vw, 600px);
   padding: 50px 10px;
-  min-height: 200px;
+  min-height: 160px;
   align-items: center;
   border-radius: 20px;
   box-shadow: 5px 8px 14px rgba(1,1,1,0.13);

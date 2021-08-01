@@ -4,7 +4,7 @@ import { useState, Fragment } from "react";
 
 function App() {
   const [city, setCity] = useState("");
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState();
   const [error, setError] = useState();
 
   const search = async (e) => {
